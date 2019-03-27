@@ -1,5 +1,6 @@
-<?php
+<?php include_once '_layout_top.php'; ?>
 
-require_once 'db.php';
-require_once 'commons.php';
+
+
+<?php include_once '_layout_bottom.php'; ?>
 
