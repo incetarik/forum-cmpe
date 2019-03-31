@@ -1,23 +1,24 @@
-<?php ?>
-
-<?php include_once __DIR__ . '/layout/_layout_top.php'; ?>
+<?php $skip_header = true; include_once __DIR__ . '/layout/_layout_top.php'; ?>
 
 <section class="login">
-    <form action="#">
-        <h1>Login Service</h1>
-        <div class="form-group">
-            <label>ID</label>
-            <input type="text" placeholder="ID">
-        </div>
-        <div class="form-group">
-            <label>PW</label>
-            <input type="text" placeholder="PW">
-        </div>
-        <div class="form-group">
-            <button type="button">Login</button>
-        </div>
-    </form>
+  <form action="#">
+    <h1>Login</h1>
+    <a class="go-back" href="/">Go Back</a>
+    <div class="form-group">
+      <label>
+        ID <input type="text" placeholder="ID">
+      </label>
+    </div>
+    <div class="form-group">
+      <label>
+        Password <input type="password" placeholder="Password">
+      </label>
+    </div>
+    <div class="form-group">
+      <button type="button">Login</button>
+    </div>
+  </form>
 </section>
-
+<script src="/assets/js/login.js" type="application/javascript"></script>
 </body>
 </html>

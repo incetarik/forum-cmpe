@@ -1,5 +1,8 @@
 namespace Global {
   let _loadCompleted = false
+  export function slice(items) {
+    return Array.prototype.slice.call(items)
+  }
 
   export let header: HTMLElement
   export let footer: HTMLElement
@@ -14,8 +17,11 @@ namespace Global {
     menu = document.getElementById('menu')
     logo = document.getElementById('logo')
 
-    document.onscroll = sideBarScrollHandler
+    if (sidebar) {
+      document.onscroll = sideBarScrollHandler
+    }
   })
+
 
 
 
@@ -40,6 +46,41 @@ namespace Global {
     }
 
     return window
+  }
+
+  export function get(url: string, callback: Function) {
+    const xmlhttp = new XMLHttpRequest()
+    xmlhttp.onreadystatechange = function () {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        callback(xmlhttp.responseText);
+      }
+    }
+
+    xmlhttp.responseType = 'json'
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+  }
+
+  export function post(url: string, data: any, callback: Function) {
+    const formData = new FormData()
+
+    if (data) {
+      for (const key in data) {
+        const value = data[key]
+        formData.append(key, value.toString())
+      }
+    }
+
+    const xmlhttp = new XMLHttpRequest()
+    xmlhttp.onreadystatechange = function () {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        callback(xmlhttp.response);
+      }
+    }
+
+    xmlhttp.responseType = 'json'
+    xmlhttp.open("POST", url, true);
+    xmlhttp.send(formData);
   }
 
   function sideBarScrollHandler() {

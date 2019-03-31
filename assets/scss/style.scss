@@ -81,6 +81,17 @@ section{ margin-bottom: 2rem;
         }
       }
     }
+
+    .go-back {
+      position: absolute;
+      top: 1.2rem;
+      right: 1rem;
+    }
+    
+    .error-info {
+      text-align: center;
+      color: red;
+    }
   }
   &.content{ width: calc(100% - #{$sidebar}); box-sizing: border-box; margin-bottom: 1rem; 
     article{ margin-bottom: .5rem; }

@@ -7,7 +7,7 @@
   list-style-type: none;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -16,16 +16,12 @@ body {
 
 .container {
   width: 1200px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   max-width: 100%;
   margin: 0 auto;
   padding: 0 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 header {
@@ -33,154 +29,109 @@ header {
   position: relative;
   z-index: 5;
 }
-
 header .container {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
-
 header .logo {
-  -webkit-box-flex: 3;
-      -ms-flex: 3 3 0px;
-          flex: 3 3 0;
+  flex: 3 3 0;
   font-size: 3rem;
   line-height: 2.8rem;
   font-weight: bold;
 }
-
 header .logo a {
   display: block;
   color: #f1c40f;
 }
-
 header .logo span {
   font-weight: normal;
   font-size: 2rem;
 }
-
 header .logo.fixed {
   position: fixed;
   left: calc(50% - 600px);
   z-index: 53;
   top: 1rem;
 }
-
 header .search {
-  -webkit-box-flex: 5;
-      -ms-flex: 5 5 0px;
-          flex: 5 5 0;
+  flex: 5 5 0;
 }
-
 header .search form {
   padding: 0 1rem;
 }
-
 header .search form .form-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
-
 header .search form .form-group input {
   display: block;
-  -webkit-box-flex: 10;
-      -ms-flex: 10 10 0px;
-          flex: 10 10 0;
+  flex: 10 10 0;
   height: 3rem;
   width: 100%;
   border: none;
   background: #7f8c8d;
   color: #EEEEEE;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding: 1rem;
 }
-
 header .search form .form-group input::-webkit-input-placeholder {
   /* WebKit browsers */
   color: #EEEEEE;
 }
-
 header .search form .form-group input:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #EEEEEE;
   opacity: 1;
 }
-
 header .search form .form-group input::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #EEEEEE;
   opacity: 1;
 }
-
 header .search form .form-group input:-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: #EEEEEE;
 }
-
 header .search form .form-group button {
   display: block;
-  -webkit-transition: .4s;
-  transition: .4s;
+  transition: 0.4s;
   cursor: pointer;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 0px;
-          flex: 1 1 0;
+  flex: 1 1 0;
   height: 3rem;
   border: none;
   color: #000000;
   background: #ecf0f1;
   padding: 0 1rem;
 }
-
 header .search form .form-group button:hover {
   background: #b1c2c6;
 }
-
 header .user {
-  -webkit-box-flex: 2;
-      -ms-flex: 2 2 0px;
-          flex: 2 2 0;
+  flex: 2 2 0;
   text-align: right;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
-
 header .user button {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-transition: .4s;
-  transition: .4s;
+  box-sizing: border-box;
+  transition: 0.4s;
   cursor: pointer;
   display: inline-block;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 0px;
-          flex: 1 1 0;
+  flex: 1 1 0;
   border: none;
   padding: 0 1rem;
   height: 3rem;
   color: #000000;
   background: #ecf0f1;
 }
-
 header .user button:hover {
   background: #b1c2c6;
 }
-
 header .user button + button {
   border-left: 1px solid #2c3e50;
 }
-
 header .menu {
   margin: 0 -1rem;
 }
-
 header .menu.fixed {
   position: fixed;
   top: 0;
@@ -188,7 +139,6 @@ header .menu.fixed {
   right: calc(50% - 600px);
   width: calc(1200px - 240px);
 }
-
 header .menu.fixed:before {
   content: "";
   position: absolute;
@@ -199,23 +149,19 @@ header .menu.fixed:before {
   background: #2c3e50;
   z-index: -1;
 }
-
 header .menu nav {
   padding: 1rem 0;
   text-align: center;
 }
-
 header .menu nav a {
   padding: 1rem;
   display: inline-block;
   background: transparent;
-  -webkit-transition: .4s;
-  transition: .4s;
+  transition: 0.4s;
   font-size: 1rem;
   color: #ecf0f1;
   line-height: 1rem;
 }
-
 header .menu nav a:hover, header .menu nav a.active {
   background: #2980b9;
 }
@@ -225,17 +171,14 @@ header .menu nav a:hover, header .menu nav a.active {
   margin-bottom: 2rem;
   width: calc(100% - 326px);
 }
-
 .search-result-container .search-result-title h1 {
   font-size: 2rem;
   color: #eeeeee;
   padding: 2rem 1rem;
 }
-
 .search-result-container section.content .head {
   background: #8e44ad;
 }
-
 .search-result-container section.content .head button:hover {
   background: #703688;
 }
@@ -243,392 +186,317 @@ header .menu nav a:hover, header .menu nav a.active {
 section {
   margin-bottom: 2rem;
 }
-
 section.login {
   position: absolute;
   left: 50%;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%) skew(-5deg, -5deg) rotate(5deg);
-          transform: translate(-50%, -50%) skew(-5deg, -5deg) rotate(5deg);
+  transform: translate(-50%, -50%) skew(-5deg, -5deg) rotate(5deg);
   padding: 1rem;
   background: #ecf0f1;
 }
-
 section.login .form-group {
   margin-bottom: 1rem;
 }
-
 section.login .form-group label {
   display: block;
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
   color: #f1c40f;
   font-weight: bold;
 }
-
 section.login .form-group input {
   width: 100%;
   height: 3rem;
-  -webkit-transition: .4s;
-  transition: .4s;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  transition: 0.4s;
+  box-sizing: border-box;
   padding: 1rem;
   color: #fff;
   background: #2c3e50;
   border: 1px solid transparent;
 }
-
 section.login .form-group input::-webkit-input-placeholder {
   /* WebKit browsers */
   color: #EEEEEE;
 }
-
 section.login .form-group input:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #EEEEEE;
   opacity: 1;
 }
-
 section.login .form-group input::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #EEEEEE;
   opacity: 1;
 }
-
 section.login .form-group input:-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: #EEEEEE;
 }
-
 section.login .form-group input:hover {
   border: 1px solid #000000;
 }
-
 section.login .form-group input:focus {
   border: 1px solid #2980b9;
 }
-
 section.login .form-group input.success {
   border: 1px solid #27ae60;
 }
-
 section.login .form-group input.error {
   border: 1px solid #e74c3c;
 }
-
 section.login .form-group button {
   border: none;
   font-weight: bold;
-  -webkit-transition: .4s;
-  transition: .4s;
+  transition: 0.4s;
   background: #2980b9;
   color: #ffffff;
   font-size: 1.2rem;
   line-height: 1rem;
   padding: 1rem;
   width: 100%;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   cursor: pointer;
 }
-
 section.login .form-group button:hover {
   background: #20638f;
 }
-
 section.login .form-group:nth-last-child(1) {
   margin-bottom: 0;
 }
-
 section.login.register .form-group button {
   background: #16a085;
 }
-
 section.login.register .form-group button:hover {
   background: #107360;
 }
-
+section.login .go-back {
+  position: absolute;
+  top: 1.2rem;
+  right: 1rem;
+}
+section.login .error-info {
+  text-align: center;
+  color: red;
+}
 section.content {
   width: calc(100% - 320px);
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin-bottom: 1rem;
 }
-
 section.content article {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
-
 section .head {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   padding: 1rem;
   background: #16a085;
   position: relative;
   z-index: 2;
 }
-
 section .head h1, section .head h3 {
   font-size: 1rem;
   font-weight: bold;
   line-height: 1rem;
   color: #ffffff;
 }
-
 section .head button {
   cursor: pointer;
-  -webkit-transition: .4s;
-  transition: .4s;
+  transition: 0.4s;
   color: #fff;
   padding: 1rem;
   position: absolute;
   right: 0;
   top: 0;
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1rem;
   background: transparent;
   border: none;
 }
-
 section .head button:hover {
   background: #107360;
 }
-
 section article {
   background: #7f8c8d;
-  padding: 1rem 1rem .5rem 1rem;
+  padding: 1rem 1rem 0.5rem 1rem;
 }
-
 section article > a {
   display: block;
-  -webkit-transition: .4s;
-  transition: .4s;
+  transition: 0.4s;
   padding: 0;
 }
-
 section article > a:hover {
   padding-left: 10px;
 }
-
 section article h2 {
   color: #ffffff;
 }
-
 section article p {
   color: #ffffff;
 }
-
 section article p span, section article p a {
-  -webkit-transition: .4s;
-  transition: .4s;
+  transition: 0.4s;
   cursor: pointer;
   color: #f1c40f;
   display: inline-block;
-  padding: .5rem;
+  padding: 0.5rem;
 }
-
 section article p span:nth-child(1), section article p a:nth-child(1) {
-  margin-left: -.5rem;
+  margin-left: -0.5rem;
 }
-
 section article p span:hover, section article p a:hover {
   color: #aa8a0a;
 }
-
 section article.article {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-bottom: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
 }
-
 section article.article .article {
-  margin: 0 0 .5rem 75px;
+  margin: 0 0 0.5rem 75px;
   background: #5a6465;
 }
-
 section article.article .article:nth-child(1) {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
-
 section article .person {
   width: 75px;
   min-height: 75px;
 }
-
 section article .person img {
   display: block;
   max-width: 100%;
   margin-bottom: 1rem;
 }
-
 section article .person h3 {
   font-size: 1rem;
   margin-bottom: 1rem;
 }
-
 section article .person p {
-  font-size: .875rem;
+  font-size: 0.875rem;
 }
-
 section article .text {
   width: calc(100% - 75px);
   min-height: 75px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding: 0 0 0 1rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
-
 section article .text .like {
   text-align: right;
 }
-
 section article .text .like button {
   cursor: pointer;
   border: none;
-  -webkit-transition: .4s;
-  transition: .4s;
+  transition: 0.4s;
   background: transparent;
   display: inline-block;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: #ffffff;
   font-size: 1rem;
 }
-
 section article .text .like button:hover, section article .text .like button.active {
   background: #16a085;
 }
-
 section article .text .like button.reply {
   background: #ffffff;
   color: #000000;
 }
-
 section article .text .like button.reply:hover {
   background: #3498db;
   color: #ffffff;
 }
-
 section article form {
-  margin: -1rem -1rem -.5rem -1rem;
+  margin: -1rem -1rem -0.5rem -1rem;
   padding: 1rem;
   background: #16a085;
 }
-
 section article form h1 {
   color: #fff;
   font-size: 1rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
-
 section article form .form-group {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
-
 section article form .form-group input {
   background: transparent;
   border: 1px solid transparent;
   color: #ffffff;
   width: 100%;
   height: 3rem;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding: 1rem;
-  -webkit-transition: .3s;
-  transition: .3s;
+  transition: 0.3s;
 }
-
 section article form .form-group input::-webkit-input-placeholder {
   /* WebKit browsers */
   color: #EEEEEE;
 }
-
 section article form .form-group input:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #EEEEEE;
   opacity: 1;
 }
-
 section article form .form-group input::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #EEEEEE;
   opacity: 1;
 }
-
 section article form .form-group input:-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: #EEEEEE;
 }
-
 section article form .form-group input:hover {
   border: 1px solid #000000;
 }
-
 section article form .form-group input:focus {
   border: 1px solid #2980b9;
 }
-
 section article form .form-group input.success {
   border: 1px solid #27ae60;
 }
-
 section article form .form-group input.error {
   border: 1px solid #e74c3c;
 }
-
 section article form .form-group textarea {
   background: transparent;
   border: 1px solid transparent;
   color: #ffffff;
   width: 100%;
   min-height: 9rem;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding: 1rem;
-  -webkit-transition: .3s;
-  transition: .3s;
+  transition: 0.3s;
 }
-
 section article form .form-group textarea::-webkit-input-placeholder {
   /* WebKit browsers */
   color: #EEEEEE;
 }
-
 section article form .form-group textarea:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #EEEEEE;
   opacity: 1;
 }
-
 section article form .form-group textarea::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #EEEEEE;
   opacity: 1;
 }
-
 section article form .form-group textarea:-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: #EEEEEE;
 }
-
 section article form .form-group textarea:hover {
   border: 1px solid #000000;
 }
-
 section article form .form-group textarea:focus {
   border: 1px solid #2980b9;
 }
-
 section article form .form-group textarea.success {
   border: 1px solid #27ae60;
 }
-
 section article form .form-group textarea.error {
   border: 1px solid #e74c3c;
 }
-
 section article form p span {
   display: inline-block;
   padding: 0;
@@ -636,30 +504,25 @@ section article form p span {
   color: #000;
   font-weight: bold;
 }
-
 section article form p span:hover {
   color: #e74c3c;
 }
-
 section article form p span:nth-child(1) {
   margin-left: 0;
 }
-
 section.sidebar {
   position: fixed;
   right: calc(50% - 600px + 1rem);
   top: 144px;
   width: 320px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding-left: 1rem;
 }
-
 section.sidebar .head {
   background: #e67e22;
 }
-
 section.sidebar article {
   background: #95a5a6;
 }
+
 /*# sourceMappingURL=style.css.map */
