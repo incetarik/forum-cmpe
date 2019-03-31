@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config.php';
+require_once dirname(__DIR__) . '/helpers/config.php';
 
 function get_db() {
     static $link;
@@ -112,4 +112,4 @@ SQL;
 }
 
 
-require_once './db/users.php';
+require_once dirname(__DIR__) . '/db/users.php';

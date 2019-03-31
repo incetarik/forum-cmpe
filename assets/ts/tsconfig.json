@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "none",
+    "target": "es3",
+    "sourceMap": true,
+    "rootDir": ".",
+    "outDir": "./../js",
+    "watch": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

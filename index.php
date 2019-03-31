@@ -1,6 +1,1 @@
-<?php include_once '_layout_top.php'; ?>
-
-
-
-<?php include_once '_layout_bottom.php'; ?>
-
+<?php include_once __DIR__ . '/home.php'; ?>
