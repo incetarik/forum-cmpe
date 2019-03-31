@@ -3,34 +3,82 @@
 require_once __DIR__ . '/config.php';
 session_start();
 
+/**
+ * Redirects to specific address with `Location` header.
+ * @param $to string Target address.
+ */
 function redirect($to)
 {
     header("Location: $to");
 }
 
+/**
+ * Puts data to specific page data. So any data can be send to new page.
+ * @param $name string Name of the data group.
+ * @param $value mixed Data.
+ * @return mixed The data.
+ */
 function putPageData($name, $value)
 {
     return $_POST[PAGE_DATA_PREFIX . $name] = $value;
 }
 
+/**
+ * @param $name string Name of the data group.
+ * @param mixed|null $default_value The default value if data could not be found.
+ * @return mixed|null The data.
+ */
 function getPageData($name, $default_value = null)
 {
     if (!isset($_POST[PAGE_DATA_PREFIX . $name])) return $default_value;
     return $_POST[PAGE_DATA_PREFIX . $name];
 }
 
+/**
+ * Extends by creating or pushing back a new item into a data group.
+ * @param $name string Name of the data group.
+ * @param $value mixed Value to extend data group.
+ * @return int The new size of the page data.
+ */
 function extendPageData($name, $value)
 {
     $array = getPageData($name, []);
     return array_push($array, $value);
 }
 
+/**
+ * Gets user from the session or returns null if not found.
+ * @return mixed|null User or null
+ */
 function getUser()
 {
-    return $_SESSION[SESSION_KEY_USER];
+    if (array_key_exists(SESSION_KEY_USER, $_SESSION)) {
+        return $_SESSION[SESSION_KEY_USER];
+    }
+
+    return null;
+}
+
+/**
+ * Redirects to specific address if user has logged in.
+ * @param $to string Target address to redirect.
+ * @param bool $should_die Kills the interpreter if true.
+ * @return bool True if redirect has been done.
+ */
+function redirectIfUserLoggedIn($to, $should_die = false) {
+    if (getUser()) {
+        redirect($to);
+        if ($should_die) die;
+        return true;
+    }
+
+    return false;
 }
 
 // Source: https://stackoverflow.com/questions/6768793/get-the-full-url-in-php
+/**
+ * @return string Full path of the url
+ */
 function full_path()
 {
     $s = &$_SERVER;
@@ -48,6 +96,9 @@ function full_path()
 }
 
 // Source: https://stackoverflow.com/questions/2040240/php-function-to-generate-v4-uuid
+/**
+ * @return string New UUID
+ */
 function gen_uuid() {
     return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
         // 32 bits for "time_low"

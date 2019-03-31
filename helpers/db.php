@@ -2,6 +2,10 @@
 
 require_once dirname(__DIR__) . '/helpers/config.php';
 
+/**
+ * Gets the database instance to apply queries on it.
+ * @return false|mysqli The database link or false.
+ */
 function get_db() {
     static $link;
     if ($link) return $link;
@@ -16,6 +20,10 @@ function get_db() {
     return $link;
 }
 
+/**
+ * Tries to initialize database tables **IF NEEDED**.
+ * @return bool True if execution was successful.
+ */
 function try_init_tables()
 {
     $db = get_db();

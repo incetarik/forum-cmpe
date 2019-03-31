@@ -55,11 +55,32 @@ function _user_register($params) {
     throw new Error('Invalid parameters');
 }
 
+function _user_login($params) {
+    $username = null;
+    $password = null;
 
-register_handler('check_username', '_user_check_username');
+    if (!array_key_exists('username', $params)) goto error;
+    if (!array_key_exists('password', $params)) goto error;
+
+    $username = $params['username'];
+    $password = $params['password'];
+
+    $user = get_user_by_auth($username, $password);
+    if (!$user) return false;
+
+    $_SESSION[SESSION_KEY_USER] = $user;
+
+    return $user;
+
+    error:
+    var_dump($params);
+    throw new Error('Invalid parameters');
+}
+
+register_handler('login', '_user_login');
 register_handler('register', '_user_register');
 register_handler('check_mail', '_user_check_email');
-
+register_handler('check_username', '_user_check_username');
 
 
 

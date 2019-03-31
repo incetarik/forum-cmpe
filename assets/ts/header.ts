@@ -1,14 +1,9 @@
 namespace Header {
   Global.extendOnLoad(() => {
-    const [ loginButton, registerButton ] = Global.slice(document.querySelectorAll('.user button'))
-    loginButton.onclick = () => {
-      location.href = '/login.php'
-    }
-
-    registerButton.onclick = () => {
-      location.href = '/register.php'
-    }
+    Global.slice(document.querySelectorAll('.user button')).forEach((item: HTMLButtonElement) => {
+      item.onclick = function () {
+        location.href = item.dataset['target']
+      }
+    })
   })
-
-
 }

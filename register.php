@@ -4,6 +4,7 @@ require_once __DIR__ . '/helpers/commons.php';
 $uuid = $_SESSION['__register_form_validation'] = gen_uuid();
 $skip_header = true;
 include_once __DIR__ . '/layout/_layout_top.php';
+redirectIfUserLoggedIn('/', true);
 
 ?>
 
