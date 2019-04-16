@@ -27,8 +27,9 @@ function make_query($stmt, $params, $execute = false) {
         return true;
     }
 
+    $stmt->bind_param($types, ...$params);
     $stmt->execute();
-    return $stmt->result_metadata();
+    return $stmt->get_result();
 }
 
 /**
