@@ -9,8 +9,8 @@
       <article class="article">
         <div class="person">
           <img src="assets/img/avatar.jpg" alt="" />
-          <h3>İbrahim Mesut Yılmaz</h3>
-          <p>Front End Developer</p>
+          <h3>User</h3>
+          <p>Adjective</p>
         </div>
         <div class="text">
           <h2>Message title</h2>
@@ -25,8 +25,8 @@
         <article class="article">
             <div class="person">
             <img src="assets/img/avatar.jpg" alt="" />
-            <h3>İbrahim Mesut Yılmaz</h3>
-            <p>Front End Developer</p>
+            <h3>User</h3>
+            <p>Adjective</p>
             </div>
             <div class="text">
             <h2>Message title</h2>
@@ -42,8 +42,8 @@
         <article class="article">
             <div class="person">
             <img src="assets/img/avatar.jpg" alt="" />
-            <h3>İbrahim Mesut Yılmaz</h3>
-            <p>Front End Developer</p>
+            <h3>User</h3>
+            <p>Adjective</p>
             </div>
             <div class="text">
             <h2>Message title</h2>
@@ -59,8 +59,8 @@
         <article class="article">
             <div class="person">
             <img src="assets/img/avatar.jpg" alt="" />
-            <h3>İbrahim Mesut Yılmaz</h3>
-            <p>Front End Developer</p>
+            <h3>User</h3>
+            <p>Adjective</p>
             </div>
             <div class="text">
             <h2>Message title</h2>
@@ -89,8 +89,8 @@
       <article class="article">
         <div class="person">
           <img src="assets/img/avatar.jpg" alt="" />
-          <h3>İbrahim Mesut Yılmaz</h3>
-          <p>Front End Developer</p>
+          <h3>User</h3>
+          <p>Adjective</p>
         </div>
         <div class="text">
           <h2>Message title</h2>
@@ -105,8 +105,8 @@
         <article class="article">
                 <div class="person">
                 <img src="assets/img/avatar.jpg" alt="" />
-                <h3>İbrahim Mesut Yılmaz</h3>
-                <p>Front End Developer</p>
+                <h3>User</h3>
+                <p>Adjective</p>
                 </div>
                 <div class="text">
                 <h2>Message title</h2>
