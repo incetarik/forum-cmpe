@@ -31,8 +31,8 @@ $user = getUser();
     <div class="menu" id="menu">
       <nav>
         <a href="index.php">Home</a>
-        <a href="#">Categories</a>
-        <a href="content.php" class="active">Content</a>
+        <a href="categories.php">Categories</a>
+        <a href="content.php">Content</a>
         <a href="message.php">Message</a>
       </nav>
     </div>
