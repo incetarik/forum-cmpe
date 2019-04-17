@@ -33,6 +33,7 @@ namespace Register {
       const { validationMessage } = idInput
       idInput.reportValidity()
       if (validationMessage) {
+        
         cannotSend |= 1 << 0
         idInput.classList.remove('error', 'success')
         return
@@ -44,11 +45,13 @@ namespace Register {
       Global.post('/api/users.php?f=check_username', { username }, (value) => {
         const { success, data } = value
         if (!success || !data) {
+          
           cannotSend |= 1 << 0
           idInput.classList.add('error')
           idInput.classList.remove('success')
         }
         else {
+          
           cannotSend &= ~(1 << 0)
           idInput.classList.remove('error')
           idInput.classList.add('success')
@@ -61,6 +64,7 @@ namespace Register {
       mailInput.reportValidity()
       mailInput.classList.remove('error', 'success')
       if (validationMessage) {
+        
         mailInput.classList.add('error')
         cannotSend |= 1 << 1
         return
@@ -72,11 +76,13 @@ namespace Register {
       Global.post('/api/users.php?f=check_mail', { mail }, value => {
         const { success, data } = value
         if (!success || !data) {
+          
           cannotSend |= 1 << 1
           mailInput.classList.add('error')
           mailInput.classList.remove('success')
         }
         else {
+          
           cannotSend &= ~(1 << 1)
           mailInput.classList.remove('error')
           mailInput.classList.add('success')
@@ -91,12 +97,14 @@ namespace Register {
       passwordInput.reportValidity()
       passwordInput.classList.remove('error')
       if (validationMessage) {
+        
         cannotSend |= 1 << 2
         currentPassword = ''
         passwordInput.classList.add('error')
         return
       }
 
+      
       cannotSend &= ~(1 << 2)
     }
 
@@ -110,6 +118,7 @@ namespace Register {
 
       if (!currentPassword || (value !== currentPassword)) {
         if (!passwordAgainInput.classList.contains('error')) {
+          
           passwordAgainInput.classList.add('error')
           return
         }
@@ -124,6 +133,8 @@ namespace Register {
       passwordAgainInput.classList.remove('error')
 
       passwordInput.classList.add('success')
+
+      
     }
 
     nameInput.oninput = function () {
@@ -131,6 +142,7 @@ namespace Register {
 
       nameInput.classList.remove('success', 'error')
       if (validationMessage) {
+        
         cannotSend |= 1 << 4
         nameInput.classList.add('error')
         return
@@ -138,6 +150,7 @@ namespace Register {
 
       cannotSend &= ~(1 << 4)
       nameInput.classList.add('success')
+      
     }
 
     surnameInput.oninput = function () {
@@ -145,6 +158,7 @@ namespace Register {
 
       surnameInput.classList.remove('error', 'success')
       if (validationMessage) {
+        
         cannotSend |= 1 << 5
         surnameInput.classList.add('error')
         return
@@ -152,6 +166,7 @@ namespace Register {
 
       cannotSend &= ~(1 << 5)
       surnameInput.classList.add('success')
+      
     }
 
     registerButton.onclick = function () {

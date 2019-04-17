@@ -10,6 +10,9 @@ namespace Global {
   export let menu: HTMLElement
   export let logo: HTMLElement
 
+  export let currentLocation: string
+  export let currentQuery: string
+
   extendOnLoad(() => {
     header = document.querySelector('header')
     footer = document.querySelector('footer')
@@ -19,6 +22,13 @@ namespace Global {
 
     if (sidebar) {
       document.onscroll = sideBarScrollHandler
+    }
+
+    currentLocation = location.pathname
+    const index = currentLocation.indexOf('?')
+    if (~index) {
+      currentQuery = currentLocation.substr(index + 1)
+      currentLocation = currentLocation.substr(0, index)
     }
   })
 
