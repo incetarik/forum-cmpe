@@ -28,7 +28,10 @@ function make_query($stmt, $params, $execute = false) {
     }
 
     $stmt->bind_param($types, ...$params);
-    $stmt->execute();
+    if (!$stmt->execute()) {
+        die($stmt->error);
+    }
+
     return $stmt->get_result();
 }
 
