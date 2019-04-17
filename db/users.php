@@ -65,13 +65,14 @@ function get_user_by_email($email, $fields = '*') {
 }
 
 function get_user_by_auth_raw($username, $password, $fields = '*') {
-    $result = safe_query("SELECT $fields FROM users WHERE username = ? AND password = SHA2(?, 512);", [$username, $password], true);
-    return $result;
+    $password = hash('sha512', $password);
+    $result = safe_query("SELECT $fields FROM users WHERE username = ? AND password = ?", [$username, $password], true);
+    return $result->fetch_all(MYSQLI_BOTH)[0];
 }
 
 function get_user_by_auth($username, $password, $fields = '*') {
     $result = get_user_by_auth_raw($username, $password, $fields);
-    return $result->fetch_row();
+    return $result;
 }
 
 function is_username_available($username) {
