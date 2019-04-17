@@ -75,6 +75,12 @@ function redirectIfUserLoggedIn($to, $should_die = false) {
     return false;
 }
 
+function redirectToLoginIfNotLoggedIn($to = '/login.php') {
+    if (getUser()) return false;
+    redirect($to);
+    return true;
+}
+
 // Source: https://stackoverflow.com/questions/6768793/get-the-full-url-in-php
 /**
  * @return string Full path of the url
