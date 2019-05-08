@@ -26,7 +26,7 @@ redirectIfUserLoggedIn('/', true);
     </div>
     <div class="form-group">
       <label>
-        Surname <input type="text" placeholder="Surname" minlength="4" pattern="[a-zA-Z]{4,}">
+        Surname <input type="text" placeholder="Surname" minlength="3" pattern="[a-zA-Z]{3,}">
       </label>
     </div>
     <div class="form-group">
