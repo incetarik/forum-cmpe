@@ -73,6 +73,7 @@
             </div>
             </div>
         </article>
+        <?php if (isset($user) and $user): ?>
         <article class="article">
           <form action="#">
             <h1>Konu başlığı ve içeriği girin</h1>
@@ -84,7 +85,8 @@
             </div>
             <p>Hakaret, ırkçılık, din, dil, yöre ayrımı yapıp siyasette dahil olmak üzere manipülasyon mesajı içeren illimünati ve yönlendirme, küçük düşürücü söylem, küfür vb. gibi paylaşımlara izin verilmeyeceği gibi, bu gibi paylaşımları yapanlar sistemimiz tarafından takip edilip üyeliği iptal edilecektir. Aynı kişilerin bu paylaşımlarını sürdürmelerinin tespiti durumunda bunun <span>kesinlikle</span> bir yaptırımı olacaktır.</p>
           </form>
-        </article>                 
+        </article>
+        <?php endif; ?>
       </article>
       <article class="article">
         <div class="person">
