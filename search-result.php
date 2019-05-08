@@ -1,33 +1,4 @@
-<?php $skip_header = true; include_once __DIR__ . '/layout/_layout_top.php'; ?>
-  <header>
-    <div class="container">
-      <div class="logo" id="logo">
-        <a href="index.html">EEEN <span>FORUM</span></a>
-      </div>
-      <div class="search">
-        <form action="#">
-          <div class="form-group">
-            <input type="text" placeholder="Search">
-            <button type="button">Now</button>
-          </div>
-        </form>
-      </div>
-      <div class="user">
-        <button type="button">Login</button>
-        <button type="button">Register</button>
-      </div>
-    </div>
-    <div class="container">
-      <div class="menu" id="menu">
-        <nav>
-          <a href="index.html" class="active">Home</a>
-          <a href="#">Categories</a>
-          <a href="content.html">Content</a>
-          <a href="message.html">Message</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+<?php include_once __DIR__ . '/layout/_layout_top.php'; ?>
   <div class="main search-result-container">
     <div class="container">
       <div class="search-result-title">

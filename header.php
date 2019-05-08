@@ -10,7 +10,7 @@ $user = getUser();
       <a href="index.php">EEEN <span>FORUM</span></a>
     </div>
     <div class="search">
-      <form action="#">
+      <form action="search-result.php">
         <div class="form-group">
           <input type="text" placeholder="Search">
           <button type="button">Now</button>
