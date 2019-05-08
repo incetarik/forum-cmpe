@@ -67,7 +67,9 @@ function get_user_by_email($email, $fields = '*') {
 function get_user_by_auth_raw($username, $password, $fields = '*') {
     $password = hash('sha512', $password);
     $result = safe_query("SELECT $fields FROM users WHERE username = ? AND password = ?", [$username, $password], true);
-    return $result->fetch_all(MYSQLI_BOTH)[0];
+    $result = $result->fetch_all(MYSQLI_BOTH);
+    if (!count($result)) return false;
+    return $result[0];
 }
 
 function get_user_by_auth($username, $password, $fields = '*') {
@@ -87,9 +89,10 @@ function is_email_available($email) {
 
 function register_user_raw($username, $password, $mail, $name, $surname)
 {
+    $password = hash('sha512', $password);
     $result = safe_query(<<<SQL
     INSERT INTO users (username, password, email_address, name, surname)
-    VALUES (?, SHA2(?, 512), ?, ?, ?);
+    VALUES (?, ?, ?, ?, ?);
 SQL
 , [$username, $password, $mail, $name, $surname], true);
 
