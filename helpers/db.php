@@ -91,6 +91,27 @@ SQL;
         return false;
     }
 
+    $query = <<<SQL
+create table if not exists entry_likes
+(
+	id int auto_increment,
+	user_id int null,
+	entry_id int null,
+	constraint entry_likes_pk primary key (id),
+	constraint entry_likes_entries_id_fk
+		foreign key (entry_id) references entries (id),
+	constraint entry_likes_users_id_fk
+		foreign key (user_id) references users (id)
+);
+SQL;
+
+
+    $db->query($query);
+    if (!$db->commit()) {
+        extendPageData('error', 'Entry Likes Table could not be created');
+        return false;
+    }
+
     return true;
 }
 
