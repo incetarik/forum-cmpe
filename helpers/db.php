@@ -141,4 +141,4 @@ SQL;
 }
 
 
-require_once dirname(__DIR__) . '/db/users.php';
+require_once __DIR__ . '/enabled_api_list.php';
