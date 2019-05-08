@@ -1,5 +1,6 @@
 namespace Header {
   export let navList: HTMLElement
+  export let searchButton: HTMLButtonElement
 
   Global.extendOnLoad(() => {
     Global.slice(document.querySelectorAll('.user button')).forEach((item: HTMLButtonElement) => {
@@ -23,5 +24,13 @@ namespace Header {
         item.classList.add('active')
       }
     })
+
+    searchButton = document.querySelector('.search button')
+  })
+
+  Global.extendOnLoad(() => {
+    searchButton.onclick = () => {
+      location.href = '/search-result.php'
+    }
   })
 }
