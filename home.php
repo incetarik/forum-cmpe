@@ -1,119 +1,35 @@
-<?php include_once __DIR__ . '/layout/_layout_top.php'; ?>
+<?php include_once __DIR__ . '/layout/_layout_top.php';
+
+$categories = get_categories();
+
+?>
 
 <div class="main">
   <div class="container">
+    <?php foreach ($categories as $category): ?>
     <section class="content">
       <div class="head">
-        <h1>CATEGORY TITLE</h1>
+        <h1><?= $category ?></h1>
         <button type="button">more...</button>
       </div>
+      <?php foreach (array_slice(get_entries_by_category($category),0, 3) as $entry): ?>
       <article>
-        <!-- link alanı -->
-        <a href="#">
-          <h2>Article title</h2>
-          <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
+        <a href="/content.php?eid=<?= $entry['id'] ?>">
+          <h2><?= $entry['title'] ?></h2>
+          <p><?= substr($entry['content'], 0, 70) ?></p>
         </a>
-        <!-- link alanı -->
-        <!-- Etiket alanı -->
-        <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-        <!-- Etiket alanı -->
+        <p>
+          <?php if ($entry['tags'] and strlen($entry['tags'])): ?>
+          <?php foreach (explode(';', $entry['tags']) as $tag): ?>
+          <a href="/search-result.php?tag=<?= urlencode($tag) ?>"><?= $tag ?></a>
+          <?php endforeach; ?>
+          <?php endif; ?>
+        </p>
       </article>
-      <article>
-        <!-- link alanı -->
-        <a href="#">
-          <h2>Article title</h2>
-          <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-        </a>
-        <!-- link alanı -->
-        <!-- Etiket alanı -->
-        <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-        <!-- Etiket alanı -->
-      </article>
+      <?php endforeach; ?>
     </section>
-    <section class="content">
-      <div class="head">
-        <h1>CATEGORY TITLE</h1>
-        <button type="button">more...</button>
-      </div>
-      <article>
-        <!-- link alanı -->
-        <a href="#">
-          <h2>Article title</h2>
-          <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-        </a>
-        <!-- link alanı -->
-        <!-- Etiket alanı -->
-        <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-        <!-- Etiket alanı -->
-      </article>
-      <article>
-        <!-- link alanı -->
-        <a href="#">
-          <h2>Article title</h2>
-          <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-        </a>
-        <!-- link alanı -->
-        <!-- Etiket alanı -->
-        <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-        <!-- Etiket alanı -->
-      </article>
-    </section>
-    <section class="content">
-      <div class="head">
-        <h1>CATEGORY TITLE</h1>
-        <button type="button">more...</button>
-      </div>
-      <article>
-        <!-- link alanı -->
-        <a href="#">
-          <h2>Article title</h2>
-          <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-        </a>
-        <!-- link alanı -->
-        <!-- Etiket alanı -->
-        <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-        <!-- Etiket alanı -->
-      </article>
-      <article>
-        <!-- link alanı -->
-        <a href="#">
-          <h2>Article title</h2>
-          <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-        </a>
-        <!-- link alanı -->
-        <!-- Etiket alanı -->
-        <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-        <!-- Etiket alanı -->
-      </article>
-    </section>
-    <section class="content">
-      <div class="head">
-        <h1>CATEGORY TITLE</h1>
-        <button type="button">more...</button>
-      </div>
-      <article>
-        <!-- link alanı -->
-        <a href="#">
-          <h2>Article title</h2>
-          <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-        </a>
-        <!-- link alanı -->
-        <!-- Etiket alanı -->
-        <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-        <!-- Etiket alanı -->
-      </article>
-      <article>
-        <!-- link alanı -->
-        <a href="#">
-          <h2>Article title</h2>
-          <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-        </a>
-        <!-- link alanı -->
-        <!-- Etiket alanı -->
-        <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-        <!-- Etiket alanı -->
-      </article>
-    </section>
+    <?php endforeach; ?>
+
     <section class="sidebar" id="sidebar">
       <div class="head">
         <h3>CONTAINER</h3>
