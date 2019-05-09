@@ -22,12 +22,13 @@ function make_query($stmt, $params, $execute = false) {
         if (!$execute) {
             return $stmt->bind_param($types, $params);
         }
+
+        $stmt->bind_param($types, ...$params);
     }
     else if (!$execute) {
         return true;
     }
 
-    $stmt->bind_param($types, ...$params);
     if (!$stmt->execute()) {
         die($stmt->error);
     }
