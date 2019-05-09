@@ -12,6 +12,8 @@ if ($entry_id) {
   $tags = explode(';', $tags);
 }
 
+$user = getUser();
+
 ?>
 
 <div class="main">
@@ -43,9 +45,11 @@ if ($entry_id) {
           </p>
           <?php endif; ?>
 
+          <?php if ($user and ($user['id'] != $entry['created_by'])): ?>
           <div class="like">
             <button class="active">Like</button>
           </div>
+          <?php endif; ?>
         </div>
       </article>
     </section>
