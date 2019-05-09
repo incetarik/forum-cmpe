@@ -10,7 +10,7 @@
 $sidebar: 320px;
 
 body{ background: #2c3e50; }
-.container{ width: 1200px; box-sizing: border-box; max-width: 100%; margin: 0 auto; padding: 0 1rem; display: flex; flex-wrap: wrap; }
+.container{ width: 1200px; box-sizing: border-box; position: relative; max-width: 100%; margin: 0 auto; padding: 0 1rem; display: flex; flex-wrap: wrap; }
 header{ padding: 1rem 0 0; position: relative; z-index: 5;
   .container{ justify-content: center; }
   .logo{ flex: 3 3 0; font-size: 3rem;line-height: 2.8rem; font-weight: bold; 
@@ -157,9 +157,9 @@ section{ margin-bottom: 2rem;
       }
     }
   }
-  &.sidebar{ position: fixed; right: calc(50% - 600px + 1rem); top: 144px; width: $sidebar; box-sizing: border-box; padding-left: 1rem; 
+  &.sidebar{ position: fixed; right: 1rem; top: 144px; width: $sidebar; box-sizing: border-box; padding-left: 1rem;
     .head{ background: #e67e22; }
-    article{ background: #95a5a6; }
+    article{ background: #95a5a6; margin-bottom: 0.5rem; }
   } 
 }
 
