@@ -13,15 +13,22 @@ if (isset($_GET['uid'])) {
   $entries = get_entries_sent_by_user(intval($uid));
 }
 
+$user = getUser();
+
 ?>
   <div class="main search-result-container">
     <div class="container">
       <div class="search-result-title">
         <h1>
-          Search Results
+          Search results
             <?php
             if ($uid) {
-              echo ' by user: "' . get_user_full_name($uid) . '"';
+              if ($user and $user['id'] == $uid) {
+                echo ' of your entries, ' . get_user_full_name($uid);
+              }
+              else {
+                  echo ' by user: "' . get_user_full_name($uid) . '"';
+              }
             }
             else if ($tag) {
               echo ' by tag: "' . $tag . '"';
