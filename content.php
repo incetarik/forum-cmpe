@@ -1,9 +1,14 @@
 <?php include_once __DIR__ . '/layout/_layout_top.php';
 
-$entry_id = $_GET['eid'];
+$entry_id = null;
 $entry = null;
 $categories = null;
 $tags = null;
+
+if (isset($_GET['eid'])) {
+    $entry_id = $_GET['eid'];
+}
+
 if ($entry_id) {
   $entry = get_entry_by_id(intval($entry_id));
   $categories = $entry['categories'];
@@ -20,6 +25,7 @@ $user = getUser();
   <div class="container">
     <?php if ($entry): ?>
     <section class="content">
+      <!-- TODO: LIKE COUNT -->
       <?php if ($categories and sizeof($categories)): ?>
       <div class="head">
         <h1><?= $categories[0] ?></h1>
