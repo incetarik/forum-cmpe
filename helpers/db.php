@@ -38,6 +38,7 @@ create table if not exists users
 	email_address varchar(100) null,
 	username varchar(100) null,
 	password varchar(500) null,
+	job_title varchar(500) null,
 	constraint users_pk	primary key (id)
 );
 SQL;
@@ -62,8 +63,11 @@ create table if not exists entries
 	like_count int default 0 not null,
 	content varchar(6000) null,
 	created_at int null,
+	created_by int null,
 	constraint entries_pk primary key (id),
-	constraint created_by foreign key (id) references users (id)
+	constraint entries_users_id_fk
+		foreign key (created_by) references users (id)
+			on delete set null
 );
 SQL;
 
@@ -81,7 +85,9 @@ create table if not exists entry_comments
 	created_at int null,
 	like_count int default 0 null,
 	constraint entry_comments_pk primary key (id),
-	constraint sent_by foreign key (id) references users (id)
+	constraint sent_by
+	    foreign key (id) references users (id)
+	        on delete set null
 );
 SQL;
 
@@ -99,9 +105,11 @@ create table if not exists entry_likes
 	entry_id int null,
 	constraint entry_likes_pk primary key (id),
 	constraint entry_likes_entries_id_fk
-		foreign key (entry_id) references entries (id),
+		foreign key (entry_id) references entries (id)
+		    on delete set null,
 	constraint entry_likes_users_id_fk
 		foreign key (user_id) references users (id)
+            on delete set null
 );
 SQL;
 
