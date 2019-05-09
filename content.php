@@ -1,41 +1,60 @@
-<?php include_once __DIR__ . '/layout/_layout_top.php'; ?>
+<?php include_once __DIR__ . '/layout/_layout_top.php';
+
+$entry_id = $_GET['eid'];
+$entry = null;
+$categories = null;
+$tags = null;
+if ($entry_id) {
+  $entry = get_entry_by_id(intval($entry_id));
+  $categories = $entry['categories'];
+  $categories = explode(';', $categories);
+  $tags = $entry['tags'];
+  $tags = explode(';', $tags);
+}
+
+?>
 
 <div class="main">
   <div class="container">
+    <?php if ($entry): ?>
     <section class="content">
+      <?php if ($categories and sizeof($categories)): ?>
       <div class="head">
-        <h1>CATEGORY TITLE</h1>
+        <h1><?= $categories[0] ?></h1>
       </div>
+      <?php endif; ?>
       <article class="article">
         <div class="person">
-          <img src="assets/img/avatar.jpg" alt=""/>
-          <h3>User</h3>
-          <p>Adjective</p>
+          <img src="assets/img/avatar/<?= $entry['created_by'] ?>.jpg" alt=""/>
+          <h3><?= $entry['name'] ?> <?= $entry['surname'] ?></h3>
+          <p><?= $entry['job_title'] ?></p>
         </div>
         <div class="text">
-          <h2>Article title</h2>
-          <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet Lorem ipsum dolor sit amet dolorum ipsum sit amet Lorem
-            ipsum dolor sit amet dolorum ipsum sit amet Lorem ipsum dolor sit amet dolorum ipsum sit amet Lorem ipsum
-            dolor sit amet dolorum ipsum sit amet Lorem ipsum dolor sit amet dolorum ipsum sit amet Lorem ipsum dolor
-            sit amet dolorum ipsum sit amet Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          <p><span>Tag st</span><span>Tag nd</span><span>Tag rd</span></p>
+          <h2><?= $entry['title'] ?></h2>
+          <p><?= $entry['content'] ?></p>
+          <?php if ($tags and sizeof($tags)): ?>
+          <p>
+            <?php foreach ($tags as $tag): ?>
+            <span>
+              <!-- TODO: Styling -->
+              <a href="/search-result.php?tag=<?= urlencode($tag) ?>"><?= $tag ?></a>
+            </span>
+            <?php endforeach; ?>
+          </p>
+          <?php endif; ?>
+
           <div class="like">
-            <button>Like</button>
             <button class="active">Like</button>
           </div>
         </div>
       </article>
     </section>
-    <section class="sidebar" id="sidebar">
-      <div class="head">
-        <h3>CONTAINER</h3>
-      </div>
-      <article>
-        <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-      </article>
-    </section>
+
+    <?php else: ?>
+      <!-- TODO: NOT FOUND -->
+    <?php endif; ?>
+
+    <?php include_once __DIR__ . '/layout/_sidebar.php'; ?>
   </div>
 </div>
 
