@@ -37,3 +37,24 @@ function toggle_like_entry($user_id, $entry_id) {
     return like_entry($user_id, $entry_id);
 }
 
+function get_categories() {
+    $result = safe_query("SELECT categories FROM entries;", true);
+    $values = $result->fetch_all(MYSQLI_BOTH);
+    $categories = [];
+    foreach ($values as $value) {
+        $category_list = explode(';', $value["categories"]);
+        foreach ($category_list as $category) {
+            $category = trim($category);
+            if (in_array($category, $categories)) continue;
+            array_push($categories, $category);
+        }
+    }
+
+    return $categories;
+}
+
+function get_entries_by_category($category) {
+    $result = safe_query("SELECT * FROM entries WHERE categories LIKE '%$category%';", true);
+    $values = $result->fetch_all(MYSQLI_BOTH);
+    return $values;
+}
