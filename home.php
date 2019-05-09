@@ -30,14 +30,7 @@ $categories = get_categories();
     </section>
     <?php endforeach; ?>
 
-    <section class="sidebar" id="sidebar">
-      <div class="head">
-        <h3>CONTAINER</h3>
-      </div>
-      <article>
-        <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-      </article>
-    </section>
+    <?php include_once __DIR__ . '/layout/_sidebar.php'; ?>
   </div>
 </div>
 
