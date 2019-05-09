@@ -18,7 +18,7 @@ function redirect($to)
  * @param $value mixed Data.
  * @return mixed The data.
  */
-function putPageData($name, $value)
+function put_page_data($name, $value)
 {
     return $_POST[PAGE_DATA_PREFIX . $name] = $value;
 }
@@ -28,7 +28,7 @@ function putPageData($name, $value)
  * @param mixed|null $default_value The default value if data could not be found.
  * @return mixed|null The data.
  */
-function getPageData($name, $default_value = null)
+function get_page_data($name, $default_value = null)
 {
     if (!isset($_POST[PAGE_DATA_PREFIX . $name])) return $default_value;
     return $_POST[PAGE_DATA_PREFIX . $name];
@@ -40,9 +40,9 @@ function getPageData($name, $default_value = null)
  * @param $value mixed Value to extend data group.
  * @return int The new size of the page data.
  */
-function extendPageData($name, $value)
+function extend_page_data($name, $value)
 {
-    $array = getPageData($name, []);
+    $array = get_page_data($name, []);
     return array_push($array, $value);
 }
 
@@ -50,7 +50,7 @@ function extendPageData($name, $value)
  * Gets user from the session or returns null if not found.
  * @return mixed|null User or null
  */
-function getUser()
+function get_user()
 {
     if (array_key_exists(SESSION_KEY_USER, $_SESSION)) {
         return $_SESSION[SESSION_KEY_USER];
@@ -65,8 +65,8 @@ function getUser()
  * @param bool $should_die Kills the interpreter if true.
  * @return bool True if redirect has been done.
  */
-function redirectIfUserLoggedIn($to, $should_die = false) {
-    if (getUser()) {
+function redirect_user_if_logged_in($to, $should_die = false) {
+    if (get_user()) {
         redirect($to);
         if ($should_die) die;
         return true;
@@ -75,8 +75,8 @@ function redirectIfUserLoggedIn($to, $should_die = false) {
     return false;
 }
 
-function redirectToLoginIfNotLoggedIn($to = '/login.php') {
-    if (getUser()) return false;
+function redirect_to_login_if_not_logged_in($to = '/login.php') {
+    if (get_user()) return false;
     redirect($to);
     return true;
 }

@@ -13,7 +13,7 @@ function get_db() {
     $link = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 
     if (!$link) {
-        extendPageData('error', 'Could not connected to database: ' . mysqli_error($link));
+        extend_page_data('error', 'Could not connected to database: ' . mysqli_error($link));
         redirect('404.php');
         die;
     }
@@ -48,7 +48,7 @@ SQL;
 
     $db->query($query);
     if (!$db->commit()) {
-        extendPageData('error', 'User Table could not be created');
+        extend_page_data('error', 'User Table could not be created');
         return false;
     }
 
@@ -73,7 +73,7 @@ SQL;
 
     $db->query($query);
     if (!$db->commit()) {
-        extendPageData('error', 'Entries Table could not be created');
+        extend_page_data('error', 'Entries Table could not be created');
         return false;
     }
 
@@ -93,7 +93,7 @@ SQL;
 
     $db->query($query);
     if (!$db->commit()) {
-        extendPageData('error', 'Entry Comments Table could not be created');
+        extend_page_data('error', 'Entry Comments Table could not be created');
         return false;
     }
 
@@ -115,7 +115,7 @@ SQL;
 
     $db->query($query);
     if (!$db->commit()) {
-        extendPageData('error', 'Entry Likes Table could not be created');
+        extend_page_data('error', 'Entry Likes Table could not be created');
         return false;
     }
 
@@ -136,7 +136,7 @@ SQL;
 
     $db->query($query);
     if (!$db->commit()) {
-        extendPageData('error', 'Sidebar Contents Table could not be created');
+        extend_page_data('error', 'Sidebar Contents Table could not be created');
         return false;
     }
 

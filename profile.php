@@ -1,6 +1,6 @@
 <?php include_once __DIR__ . '/layout/_layout_top.php';
 
-redirectToLoginIfNotLoggedIn();
+redirect_to_login_if_not_logged_in();
 ?>
 
 <div class="profile-page">

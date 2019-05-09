@@ -3,7 +3,7 @@
 require_once __DIR__ . '/index.php';
 
 function _entry_like($params) {
-    $user = getUser();
+    $user = get_user();
     if (!$user) {
         var_dump($params);
         throw new Error('User not found');
@@ -18,7 +18,7 @@ function _entry_like($params) {
 }
 
 function _entry_dislike($params) {
-    $user = getUser();
+    $user = get_user();
     if (!$user) {
         var_dump($params);
         throw new Error('User not found');

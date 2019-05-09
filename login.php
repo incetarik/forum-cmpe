@@ -2,7 +2,7 @@
 
 $skip_header = true;
 include_once __DIR__ . '/layout/_layout_top.php';
-redirectIfUserLoggedIn( '/', true);
+redirect_user_if_logged_in( '/', true);
 
 ?>
 

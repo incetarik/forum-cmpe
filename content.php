@@ -17,7 +17,7 @@ if ($entry_id) {
   $tags = explode(';', $tags);
 }
 
-$user = getUser();
+$user = get_user();
 
 ?>
 

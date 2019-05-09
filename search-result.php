@@ -13,7 +13,7 @@ if (isset($_GET['uid'])) {
   $entries = get_entries_sent_by_user(intval($uid));
 }
 
-$user = getUser();
+$user = get_user();
 
 ?>
   <div class="main search-result-container">

@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/helpers/commons.php';
-$user = getUser();
+$user = get_user();
 
 ?>
 <header>
