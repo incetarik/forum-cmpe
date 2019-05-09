@@ -1,159 +1,68 @@
-<?php include_once __DIR__ . '/layout/_layout_top.php'; ?>
+<?php include_once __DIR__ . '/layout/_layout_top.php';
+
+$tag = null;
+$uid = null;
+$entries = null;
+
+if (isset($_GET['tag'])) {
+  $tag = $_GET['tag'];
+}
+
+if (isset($_GET['uid'])) {
+  $uid = $_GET['uid'];
+  $entries = get_entries_sent_by_user(intval($uid));
+}
+
+?>
   <div class="main search-result-container">
     <div class="container">
       <div class="search-result-title">
-        <h1>Search Results</h1>
+        <h1>
+          Search Results
+            <?php
+            if ($uid) {
+              echo ' by user: "' . get_user_full_name($uid) . '"';
+            }
+            else if ($tag) {
+              echo ' by tag: "' . $tag . '"';
+            }
+            ?>
+        </h1>
       </div>
     </div>
     <div class="container">
-      <section class="content">
-        <div class="head">
-          <h1>CATEGORY TITLE</h1>
-          <button type="button">more...</button>
-        </div>
-        <article>
-          <!-- link alanı -->
-          <a href="#">
-            <h2>Article title</h2>
-            <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          </a>
-          <!-- link alanı -->
-          <!-- Etiket alanı -->
-          <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-          <!-- Etiket alanı -->
-        </article>
-        <article>
-          <!-- link alanı -->
-          <a href="#">
-            <h2>Article title</h2>
-            <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          </a>
-          <!-- link alanı -->
-          <!-- Etiket alanı -->
-          <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-          <!-- Etiket alanı -->
-        </article>
-      </section>
-      <section class="content">
-        <div class="head">
-          <h1>CATEGORY TITLE</h1>
-          <button type="button">more...</button>
-        </div>
-        <article>
-          <!-- link alanı -->
-          <a href="#">
-            <h2>Article title</h2>
-            <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          </a>
-          <!-- link alanı -->
-          <!-- Etiket alanı -->
-          <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-          <!-- Etiket alanı -->
-        </article>
-        <article>
-          <!-- link alanı -->
-          <a href="#">
-            <h2>Article title</h2>
-            <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          </a>
-          <!-- link alanı -->
-          <!-- Etiket alanı -->
-          <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-          <!-- Etiket alanı -->
-        </article>
-      </section>
-      <section class="content">
-        <div class="head">
-          <h1>CATEGORY TITLE</h1>
-          <button type="button">more...</button>
-        </div>
-        <article>
-          <!-- link alanı -->
-          <a href="#">
-            <h2>Article title</h2>
-            <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          </a>
-          <!-- link alanı -->
-          <!-- Etiket alanı -->
-          <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-          <!-- Etiket alanı -->
-        </article>
-        <article>
-          <!-- link alanı -->
-          <a href="#">
-            <h2>Article title</h2>
-            <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          </a>
-          <!-- link alanı -->
-          <!-- Etiket alanı -->
-          <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-          <!-- Etiket alanı -->
-        </article>
-      </section>
-      <section class="content">
-        <div class="head">
-          <h1>CATEGORY TITLE</h1>
-          <button type="button">more...</button>
-        </div>
-        <article>
-          <!-- link alanı -->
-          <a href="#">
-            <h2>Article title</h2>
-            <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          </a>
-          <!-- link alanı -->
-          <!-- Etiket alanı -->
-          <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-          <!-- Etiket alanı -->
-        </article>
-        <article>
-          <!-- link alanı -->
-          <a href="#">
-            <h2>Article title</h2>
-            <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          </a>
-          <!-- link alanı -->
-          <!-- Etiket alanı -->
-          <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-          <!-- Etiket alanı -->
-        </article>
-      </section>
-      <section class="content">
-        <div class="head">
-          <h1>CATEGORY TITLE</h1>
-          <button type="button">more...</button>
-        </div>
-        <article>
-          <!-- link alanı -->
-          <a href="#">
-            <h2>Article title</h2>
-            <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          </a>
-          <!-- link alanı -->
-          <!-- Etiket alanı -->
-          <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-          <!-- Etiket alanı -->
-        </article>
-        <article>
-          <!-- link alanı -->
-          <a href="#">
-            <h2>Article title</h2>
-            <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-          </a>
-          <!-- link alanı -->
-          <!-- Etiket alanı -->
-          <p><a href="#">Tag st</a><a href="#">Tag nd</a><a href="#">Tag rd</a></p>
-          <!-- Etiket alanı -->
-        </article>
-      </section>
-      <section class="sidebar" id="sidebar">
-        <div class="head">
-          <h3>CONTAINER</h3>
-        </div>
-        <article>
-          <p>Lorem ipsum dolor sit amet dolorum ipsum sit amet</p>
-        </article>
-      </section>
+      <?php if ($entries and sizeof($entries)): ?>
+          <?php foreach ($entries as $entry) {
+            $categories = $entry['categories'] or '';
+            $categories = explode(';', $categories);
+            $tags = $entry['tags'] or '';
+            $tags = explode(';', $tags); ?>
+
+            <section class="content">
+              <?php if ($categories and sizeof($categories)): ?>
+              <div class="head">
+                <h1><?= $categories[0] ?></h1>
+                <button type="button">more...</button>
+              </div>
+              <?php endif; ?>
+              <article>
+                <a href="/content.php?eid=<?= $entry['id'] ?>">
+                  <h2><?= $entry['title'] ?></h2>
+                  <p><?= substr($entry['content'], 0, 70) ?></p>
+                </a>
+                <p>
+                  <?php foreach ($tags as $tag): ?>
+                  <a href="/search-result.php?tag=<?= urlencode($tag) ?>"><?= $tag ?></a>
+                  <?php endforeach; ?>
+                </p>
+              </article>
+            </section>
+          <?php } ?>
+      <?php else: ?>
+      <!-- TODO: Not found any -->
+      <?php endif; ?>
+
+      <?php include_once __DIR__ . '/layout/_sidebar.php'; ?>
     </div>
   </div>
 
