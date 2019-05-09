@@ -105,10 +105,30 @@ create table if not exists entry_likes
 );
 SQL;
 
-
     $db->query($query);
     if (!$db->commit()) {
         extendPageData('error', 'Entry Likes Table could not be created');
+        return false;
+    }
+
+    $query = <<<SQL
+create table sidebar_contents
+(
+	id int auto_increment,
+	title varchar(300) null,
+	content varchar(600) not null,
+	added_by int null,
+	constraint sidebar_contents_pk
+		primary key (id),
+	constraint sidebar_contents_users_id_fk
+		foreign key (added_by) references users (id)
+			on delete set null
+);
+SQL;
+
+    $db->query($query);
+    if (!$db->commit()) {
+        extendPageData('error', 'Sidebar Contents Table could not be created');
         return false;
     }
 
