@@ -61,13 +61,27 @@ function get_entries_by_category($category) {
 
 function get_entry_by_id($id) {
     $sql = <<<SQL
-SELECT entries.*, u.name, u.surname, u.email_address, u.job_title
-FROM entries
-LEFT JOIN users u on entries.created_by = u.id
-WHERE entries.id = ?
+    SELECT entries.*, u.name, u.surname, u.email_address, u.job_title
+    FROM entries
+    LEFT JOIN users u on entries.created_by = u.id
+    WHERE entries.id = ?
 SQL;
 
     $result = safe_query($sql, [ $id ], true);
     $values = $result->fetch_assoc();
+    return $values;
+}
+
+
+function get_entries_sent_by_user($id) {
+    $sql = <<<SQL
+    SELECT entries.*, u.name, u.surname, u.email_address, u.job_title
+    FROM entries
+    LEFT JOIN users u on entries.created_by = u.id
+    WHERE u.id = ?
+SQL;
+
+    $result = safe_query($sql, [ $id ], true);
+    $values = $result->fetch_all(MYSQLI_BOTH);
     return $values;
 }
