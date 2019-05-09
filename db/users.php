@@ -102,3 +102,12 @@ function register_user($username, $password, $mail, $name, $surname) {
     return $result;
 }
 
+function get_user_full_name($id) {
+    $result = safe_query("SELECT name, surname FROM users WHERE id = ?;", [ $id ], true);
+    $value = $result->fetch_assoc();
+    if ($value and sizeof($value)) {
+        return "{$value['name']} {$value['surname']}";
+    }
+
+    return '';
+}
