@@ -22,12 +22,10 @@ function get_by_id_raw($id, $fields = '*') {
 
 function get_by_id($id, $fields = '*') {
     $result = get_by_id_raw($id, $fields);
-    return $result->fetch_row();
+    return $result->fetch_assoc();
 }
 
 function get_by_ids_raw($ids, $fields = '*') {
-    $db = get_db();
-
     if (is_string($ids)) {
         $ids = explode(',', $ids);
     }
