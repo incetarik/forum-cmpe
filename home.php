@@ -6,11 +6,15 @@ $categories = get_categories();
 
 <div class="main">
   <div class="container">
-    <?php foreach ($categories as $category): ?>
+    <?php foreach ($categories as $category) { if (!$category) continue; ?>
     <section class="content">
       <div class="head">
+        <?php if ($category): ?>
         <h1><?= $category ?></h1>
-        <button type="button">more...</button>
+        <button type="button" onclick="location.href='/search-result.php?category=<?= urlencode($category) ?>'">more...</button>
+        <?php else: ?>
+        <h1>Others</h1>
+        <?php endif; ?>
       </div>
       <?php foreach (array_slice(get_entries_by_category($category),0, 3) as $entry): ?>
       <article>
@@ -28,7 +32,7 @@ $categories = get_categories();
       </article>
       <?php endforeach; ?>
     </section>
-    <?php endforeach; ?>
+    <?php } ?>
 
     <?php include_once __DIR__ . '/layout/_sidebar.php'; ?>
   </div>
