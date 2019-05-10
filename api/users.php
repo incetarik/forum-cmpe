@@ -44,9 +44,6 @@ function _user_register($params) {
     }
 
     $value = register_user($username, $password, $mail, $name, $surname);
-    if (!$value) {
-        return false;
-    }
 
     return true;
 
@@ -77,11 +74,41 @@ function _user_login($params) {
     throw new Error('Invalid parameters');
 }
 
+function _user_update($params) {
+    $user = get_user();
+    if (!$user) throw new Error('User not logged in');
+    if (!isset($_SESSION['__update_form_validation'])) throw new Error("No validation provided");
+    if (!array_key_exists('__update_form_validation', $params)) throw new Error('Invalid form');
+    if ($params['__update_form_validation'] != $_SESSION['__update_form_validation'])
+        throw new Error('Validation mismatch');
+
+    $_SESSION['__update_form_validation'] = null;
+
+    $id = $user['id'];
+    $id = intval($id);
+
+    $name = null;
+    $surname = null;
+    $email_address = null;
+    $job_title = null;
+    $password = null;
+
+    if (isset($params['name'])) $name = $params['name'];
+    if (isset($params['surname'])) $surname = $params['surname'];
+    if (isset($params['email'])) $email_address = $params['email'];
+    if (isset($params['jobTitle'])) $job_title = $params['jobTitle'];
+    if (isset($params['password'])) $password = $params['password'];
+
+    $result = update_user($id, $name, $surname, $email_address, $job_title, $password);
+    $_SESSION[SESSION_KEY_USER] = get_user_by_username($user['username']);
+    return $result;
+}
+
 register_handler('login', '_user_login');
 register_handler('register', '_user_register');
 register_handler('check_mail', '_user_check_email');
 register_handler('check_username', '_user_check_username');
-
+register_handler('update', '_user_update');
 
 
 
