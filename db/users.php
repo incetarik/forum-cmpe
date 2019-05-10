@@ -54,7 +54,7 @@ function get_user_by_username_raw($username, $fields = '*') {
 
 function get_user_by_username($username, $fields = '*') {
     $result = get_user_by_username_raw($username, $fields);
-    return $result->fetch_row();
+    return $result->fetch_assoc();
 }
 
 function get_user_by_email($email, $fields = '*') {
@@ -110,4 +110,48 @@ function get_user_full_name($id) {
     }
 
     return '';
+}
+
+function update_user($id, $name = null, $surname = null, $email = null, $job_title = null, $password = null) {
+    $sql = "UPDATE users SET";
+    $update_params = [];
+
+    if ($name) {
+        $sql .= ' name = ?, ';
+        array_push($update_params, $name);
+    }
+
+    if ($surname) {
+        $sql .= ' surname = ?, ';
+        array_push($update_params, $surname);
+    }
+
+    if ($email) {
+        $sql .= ' email = ?, ';
+        array_push($update_params, $email);
+    }
+
+    if ($job_title) {
+        $sql .= ' job_title = ?, ';
+        array_push($update_params, $job_title);
+    }
+
+    if ($password) {
+        $sql .= ' password = ?, ';
+        array_push($update_params, hash('sha512', $password));
+    }
+
+    if (!sizeof($update_params)) {
+        return false;
+    }
+
+
+    $sql = substr($sql,0, strlen($sql) - 2);
+    $sql .= ' WHERE id = ?';
+    array_push($update_params, $id);
+
+    $result = safe_query($sql, $update_params, true);
+    if (is_bool($result)) return $result;
+    $value = $result->fetch_assoc();
+    return $value;
 }
