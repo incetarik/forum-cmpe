@@ -2,15 +2,22 @@
 
 $tag = null;
 $uid = null;
+$category = null;
 $entries = null;
 
 if (isset($_GET['tag'])) {
   $tag = $_GET['tag'];
+  $entries = get_entries_by_tag($tag);
 }
 
 if (isset($_GET['uid'])) {
   $uid = $_GET['uid'];
   $entries = get_entries_sent_by_user(intval($uid));
+}
+
+if (isset($_GET['category'])) {
+  $category = $_GET['category'];
+  $entries = get_entries_by_category($category);
 }
 
 ?>
