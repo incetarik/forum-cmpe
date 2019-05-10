@@ -72,7 +72,13 @@ namespace Global {
   }
 
   export function post(url: string, data: any, callback: Function) {
-    const formData = new FormData()
+    let formData
+    if (data instanceof FormData) {
+      formData = data
+    }
+    else {
+      formData = new FormData()
+    }
 
     if (data) {
       for (const key in data) {
