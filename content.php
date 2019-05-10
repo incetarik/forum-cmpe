@@ -17,8 +17,6 @@ if ($entry_id) {
   $tags = explode(';', $tags);
 }
 
-$user = get_user();
-
 ?>
 
 <div class="main">
