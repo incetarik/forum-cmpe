@@ -85,3 +85,15 @@ SQL;
     $values = $result->fetch_all(MYSQLI_BOTH);
     return $values;
 }
+
+function create_entry($user_id, $title, $content, $categories, $tags) {
+    $sql = <<<SQL
+    INSERT INTO entries 
+        (title, categories, tags, like_count, content, created_at, created_by) 
+    VALUES (?, ?, ?, ?, ?, ?, ?);
+SQL;
+
+    $result = safe_query($sql, [ $title, $categories, $tags, 0, $content, time(), $user_id ], true);
+    if (is_bool($result)) return $result;
+    return $result->fetch_assoc();
+}
