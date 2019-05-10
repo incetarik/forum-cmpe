@@ -33,7 +33,8 @@ function make_query($stmt, $params, $execute = false) {
         die($stmt->error);
     }
 
-    return $stmt->get_result();
+    $result = $stmt->get_result();
+    return $result;
 }
 
 /**

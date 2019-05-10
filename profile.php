@@ -1,6 +1,7 @@
 <?php include_once __DIR__ . '/layout/_layout_top.php';
 
 redirect_to_login_if_not_logged_in();
+$validation = $_SESSION['__update_form_validation'] = gen_uuid();
 
 ?>
 
@@ -23,13 +24,39 @@ redirect_to_login_if_not_logged_in();
   </div>
   <div class="edit-profile">
     <form action="">
-      <div class="form-group"><label for="name">Name:</label><input type="text" id="name"></div>
-      <div class="form-group"><label for="surname">Surname:</label><input type="text" id="surname"></div>
-      <div class="form-group"><label for="email">Email:</label><input type="email" id="email"></div>
-      <div class="form-group"><label for="jobTitle">Job:</label><input type="text" id="jobTitle"></div>
-      <div class="form-group"><button type="button">Save</button></div>
+      <input type="hidden" value="<?= $validation ?>"/>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="<?= $user['name'] ?>" minlength="3" onchange="UpdateProfile.updateButton()">
+      </div>
+      <div class="form-group">
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" placeholder="<?= $user['surname'] ?>" minlength="2" onchange="UpdateProfile.updateButton()">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="<?= $user['email_address'] ?>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onchange="UpdateProfile.updateButton()">
+      </div>
+      <div class="form-group">
+        <label for="jobTitle">Job:</label>
+        <input type="text" id="jobTitle" placeholder="<?= $user['job_title'] ?>" pattern="\w[\w \d]*" onchange="UpdateProfile.updateButton()">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="••••••••" minlength="6" onchange="UpdateProfile.updateButton()">
+      </div>
+      <div class="form-group">
+        <button type="button" id="saveButton">Save</button>
+      </div>
     </form>
   </div>
 </div>
 
+<script id="removeMe">var defaultValues={name:'<?=
+            $user['name'] ?>',surname:'<?=
+            $user['surname'] ?>',email:'<?=
+            $user['email_address'] ?>',jobTitle:'<?=
+            $user['job_title']
+?>'}</script>
+<script src="/assets/js/update-profile.js"></script>
 <?php include_once __DIR__ . '/layout/_layout_bottom.php'; ?>
