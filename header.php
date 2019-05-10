@@ -34,6 +34,9 @@ $user = get_user();
         <a href="categories.php">Categories</a>
         <a href="content.php">Content</a>
         <a href="message.php">Message</a>
+        <?php if ($user): ?>
+        <a class="right" href="create-article.php">Add New</a>
+        <?php endif; ?>
       </nav>
     </div>
   </div>
