@@ -54,7 +54,8 @@ function get_categories() {
 }
 
 function get_entries_by_category($category) {
-    $result = safe_query("SELECT * FROM entries WHERE categories LIKE '%$category%';", true);
+    if (!$category) return [];
+    $result = safe_query("SELECT * FROM entries WHERE categories LIKE ?;", [ "%$category%" ], true);
     $values = $result->fetch_all(MYSQLI_BOTH);
     return $values;
 }
@@ -82,6 +83,20 @@ function get_entries_sent_by_user($id) {
 SQL;
 
     $result = safe_query($sql, [ $id ], true);
+    $values = $result->fetch_all(MYSQLI_BOTH);
+    return $values;
+}
+
+function get_entries_by_tag($tag) {
+    if (!$tag) return [];
+    $sql = <<<SQL
+    SELECT entries.*, u.name, u.surname, u.email_address, u.job_title
+    FROM entries
+    LEFT JOIN users u on entries.created_by = u.id
+    WHERE entries.tags LIKE ?;
+SQL;
+
+    $result = safe_query($sql, [ "%$tag%" ], true);
     $values = $result->fetch_all(MYSQLI_BOTH);
     return $values;
 }
