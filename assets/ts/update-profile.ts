@@ -5,6 +5,8 @@ namespace UpdateProfile {
   let emailInput: HTMLInputElement
   let jobTitleInput: HTMLInputElement
   let passwordInput: HTMLInputElement
+  let imageFileInput: HTMLInputElement
+  let profilePictureImage: HTMLImageElement
   declare const defaultValues: any
 
   Global.extendOnLoad(() => {
@@ -16,6 +18,11 @@ namespace UpdateProfile {
     emailInput = document.getElementById('email') as HTMLInputElement
     jobTitleInput = document.getElementById('jobTitle') as HTMLInputElement
     passwordInput = document.getElementById('password') as HTMLInputElement
+    profilePictureImage = document.getElementById('pp') as HTMLImageElement
+
+    imageFileInput = document.getElementById('imageFileInput') as HTMLInputElement
+    imageFileInput.onclick = onChangePicture;
+
     document.getElementById('removeMe').remove()
   })
 
@@ -50,6 +57,14 @@ namespace UpdateProfile {
     })
   }
 
+  export function updateButton() {
+    saveButton.disabled = !checkButton()
+  }
+
+  export function triggerImageClick() {
+    imageFileInput.click()
+  }
+
   function checkButton() {
     if (!nameInput.reportValidity()) return false
     if (!surnameInput.reportValidity()) return false
@@ -60,8 +75,26 @@ namespace UpdateProfile {
     return true
   }
 
-  export function updateButton() {
-    saveButton.disabled = !checkButton()
+  let waitingIntervalId = 0
+  export function onChangePicture() {
+    if (!waitingIntervalId) {
+      waitingIntervalId = setInterval(onChangePicture, 300)
+      return
+    }
+
+    const { files } = imageFileInput
+    if (!files.length) return
+    clearInterval(waitingIntervalId)
+    waitingIntervalId = 0
+    const data = new FormData()
+    data.append('image', files[0])
+    Global.post('/api/users.php?f=change_pp', data, () => {
+      setTimeout(() => {
+        const old = profilePictureImage.src
+        profilePictureImage.src = ''
+        profilePictureImage.src = old
+      }, 1000)
+    })
   }
 
   function getValidation() {

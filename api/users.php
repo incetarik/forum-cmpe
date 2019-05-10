@@ -104,12 +104,30 @@ function _user_update($params) {
     return $result;
 }
 
+function _user_change_profile_picture($params)
+{
+    $user = get_user();
+    if (!$user) throw new Error('User not logged in');
+    $id = $user['id'];
+    $id = intval($id);
+
+    if (!isset($_FILES['image'])) return false;
+    $photo = $_FILES['image'];
+    $file_name = $_FILES['image']['name'];
+    $file_size = $_FILES['image']['size'];
+    $file_tmp = $_FILES['image']['tmp_name'];
+    $file_type = $_FILES['image']['type'];
+
+    move_uploaded_file($file_tmp, dirname(__DIR__ ) . "/assets/img/avatar/$id.jpg");
+    return true;
+}
+
 register_handler('login', '_user_login');
 register_handler('register', '_user_register');
 register_handler('check_mail', '_user_check_email');
 register_handler('check_username', '_user_check_username');
 register_handler('update', '_user_update');
-
+register_handler('change_pp', '_user_change_profile_picture', 'p');
 
 
 

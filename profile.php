@@ -8,8 +8,8 @@ $validation = $_SESSION['__update_form_validation'] = gen_uuid();
 <div class="container">
   <div class="my-profile">
     <div class="img edit">
-      <img src="/assets/img/avatar/<?= $user['id'] ?>.jpg" alt="" />
-      <button type="button" class="change-btn">Change</button>
+      <img id="pp" src="/assets/img/avatar/<?= $user['id'] ?>.jpg" alt="" />
+      <button type="button" class="change-btn" onclick="UpdateProfile.triggerImageClick()">Change</button>
       <button type="button" class="save-btn">Save</button>
     </div>
     <div class="name text">
@@ -24,7 +24,8 @@ $validation = $_SESSION['__update_form_validation'] = gen_uuid();
   </div>
   <div class="edit-profile">
     <form action="">
-      <input type="hidden" value="<?= $validation ?>"/>
+      <input type="hidden" value="<?= $validation ?>" onchange="UpdateProfile.onChangePicture()"/>
+      <input type="file" style="display: none" name="image" id="imageFileInput">
       <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" placeholder="<?= $user['name'] ?>" minlength="3" onchange="UpdateProfile.updateButton()">
