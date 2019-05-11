@@ -60,7 +60,6 @@ create table if not exists entries
 	title varchar(1000) null,
 	categories varchar(1000) null,
 	tags varchar(1000) null,
-	like_count int default 0 not null,
 	content varchar(6000) null,
 	created_at int null,
 	created_by int null,
@@ -83,11 +82,17 @@ create table if not exists entry_comments
 	id int auto_increment,
 	content varchar(6000) null,
 	created_at int null,
-	like_count int default 0 null,
+	entry_id int null,
+	sent_by int null,
+	title varchar(300) null,
 	constraint entry_comments_pk primary key (id),
 	constraint sent_by
-	    foreign key (id) references users (id)
-	        on delete set null
+	    foreign key (sent_by) references users (id)
+	        on delete set null,
+	        
+	constraint entry_comments_entries_id_fk
+		foreign key (entry_id) references entries (id)
+			on delete set null
 );
 SQL;
 
