@@ -116,7 +116,45 @@ SQL;
 }
 
 function get_has_user_liked_entry($user_id, $entry_id) {
-    $sql = "SELECT 1 FROM entry_likes WHERE entry_id = ? AND user_id = ?";
+    $sql = "SELECT 1 FROM entry_likes WHERE entry_id = ? AND user_id = ?;";
     $result = safe_query($sql, [ $entry_id, $user_id ], true);
     return $result->num_rows;
+}
+
+function get_comments_of_entry($entry_id) {
+    $sql = <<<SQL
+    SELECT entry_comments.*, u.id as userid, u.name, u.surname, u.email_address, u.job_title
+    FROM entry_comments
+    LEFT JOIN users u on entry_comments.sent_by = u.id
+    WHERE entry_id = ?
+    ORDER BY entry_comments.created_at ASC;
+SQL;
+
+    $result = safe_query($sql, [ $entry_id ], true);
+    return $result->fetch_all(MYSQLI_BOTH);
+}
+
+function get_comments_of_entry_by_user($user_id, $entry_id) {
+    $sql = <<<SQL
+    SELECT entry_comments.*, u.id as userid, u.name, u.surname, u.email_address, u.job_title
+    FROM entry_comments
+    LEFT JOIN users u on entry_comments.sent_by = u.id
+    WHERE entry_id = ? AND sent_by = ?
+    ORDER BY entry_comments.created_at ASC;
+SQL;
+
+    $result = safe_query($sql, [ $entry_id, $user_id ], true);
+    return $result->fetch_all(MYSQLI_BOTH);
+}
+
+function add_comment_to_entry($user_id, $entry_id, $title, $content) {
+    $sql = <<<SQL
+    INSERT INTO entry_comments
+    (content, created_at, entry_id, sent_by, title) 
+    VALUES 
+    (?, ?, ?, ?, ?);
+SQL;
+
+    list($result, $stmt) = safe_query($sql, [ $content, time(), $entry_id, $user_id, $title ], true, true);
+    return $stmt->affected_rows;
 }
