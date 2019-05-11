@@ -11,3 +11,5 @@ const PAGE_DATA_PREFIX = '__pageData_';
 
 
 const SESSION_KEY_USER = 'user';
+const SESSION_SIDEBAR_PAIRS = '__sidebar_pairs';
+
