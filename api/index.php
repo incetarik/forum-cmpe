@@ -53,7 +53,7 @@ function handle_request() {
             'data' => $result
         ]);
     }
-    catch (Exception $e) {
+    catch (Throwable $e) {
         echo json_encode([
             'success' => false,
             'error' => [
