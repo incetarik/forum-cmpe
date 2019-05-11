@@ -54,6 +54,7 @@ function handle_request() {
         ]);
     }
     catch (Throwable $e) {
+        error_log($e->getMessage());
         echo json_encode([
             'success' => false,
             'error' => [
