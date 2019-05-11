@@ -4,9 +4,10 @@
  * @param $stmt mysqli_stmt
  * @param $params array
  * @param bool $execute
- * @return bool|mysqli_result
+ * @param bool $return_with_stmt
+ * @return bool|mysqli_result|[bool|mysqli_result,mysqli_stmt]
  */
-function make_query($stmt, $params, $execute = false) {
+function make_query($stmt, $params, $execute = false, $return_with_stmt = false) {
     if (!is_array($params)) throw new UnexpectedValueException('$params must be an array');
 
     if (count($params)) {
@@ -34,16 +35,18 @@ function make_query($stmt, $params, $execute = false) {
     }
 
     $result = $stmt->get_result();
-    return $result;
+    if (!$return_with_stmt) return $result;
+    return [ $result, $stmt ];
 }
 
 /**
  * @param $sql string SQL Query.
  * @param $paramsOrExecute array|bool|mixed Array of parameters or execute value.
  * @param bool $execute True if the statement should be executed.
- * @return bool|mysqli_result
+ * @param bool $return_with_stmt True if $stmt object should be returned.
+ * @return bool|mysqli_result|[bool|mysqli_result,mysqli_stmt]
  */
-function safe_query($sql, $paramsOrExecute, $execute = false) {
+function safe_query($sql, $paramsOrExecute, $execute = false, $return_with_stmt = false) {
     $db = get_db();
     $result = $db->prepare($sql);
 
@@ -57,5 +60,5 @@ function safe_query($sql, $paramsOrExecute, $execute = false) {
         else throw new UnexpectedValueException('$paramsOrExecute must be an array');
     }
 
-    return make_query($result, $paramsOrExecute, $execute);
+    return make_query($result, $paramsOrExecute, $execute, $return_with_stmt);
 }
