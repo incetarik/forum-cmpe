@@ -21,7 +21,7 @@ namespace Global {
     logo = document.getElementById('logo')
 
     if (sidebar) {
-      document.onscroll = sideBarScrollHandler
+      // document.onscroll = sideBarScrollHandler
     }
 
     currentLocation = location.pathname
@@ -119,6 +119,23 @@ namespace Global {
     else {
       style.marginTop = '-68px'
     }
+  }
+
+  export function deleteSidebarContent(contentId: number, userRemovalKey: string) {
+    return Global.post(`/api/sidebar_contents.php?f=delete`, {
+      key: userRemovalKey,
+      id: contentId,
+    }, (result) => {
+      if (typeof result === 'object' && 'data' in result && result['data'] == 1) {
+        const element = document.getElementById(`del_sbc_${contentId}`)
+        const head = element.parentElement
+        if (!head) return
+        const article = head.nextElementSibling
+        head.remove()
+        if (!article) return
+        article.remove()
+      }
+    })
   }
 }
 
