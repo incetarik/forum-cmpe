@@ -1,4 +1,8 @@
-<?php include_once __DIR__ . '/layout/_layout_top.php'; ?>
+<?php include_once __DIR__ . '/layout/_layout_top.php';
+
+redirect_to_login_if_not_logged_in();
+
+?>
 
 <div class="container">
     <div class="entry">
