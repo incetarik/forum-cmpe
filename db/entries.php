@@ -20,13 +20,15 @@ function like_entry($user_id, $entry_id) {
     $values = $result->fetch_all(MYSQLI_BOTH);
 
     if (count($values)) return false;
-    $result = safe_query("INSERT INTO entry_likes (user_id, entry_id) VALUES (?, ?);", [ $user_id, $entry_id ], true);
-    return $result;
+    list($result, $stmt) = safe_query("INSERT INTO entry_likes (user_id, entry_id) VALUES (?, ?);", [ $user_id, $entry_id ], true, true);
+    if ($stmt->affected_rows) return 'like';
+    return false;
 }
 
 function dislike_entry($user_id, $entry_id) {
-    $result = safe_query("DELETE FROM entry_likes WHERE user_id = ? AND entry_id = ?;", [ $user_id, $entry_id ], true);
-    return $result;
+    list($result, $stmt) = safe_query("DELETE FROM entry_likes WHERE user_id = ? AND entry_id = ?;", [ $user_id, $entry_id ], true, true);
+    if ($stmt->affected_rows) return 'dislike';
+    return false;
 }
 
 function toggle_like_entry($user_id, $entry_id) {
@@ -104,11 +106,17 @@ SQL;
 function create_entry($user_id, $title, $content, $categories, $tags) {
     $sql = <<<SQL
     INSERT INTO entries 
-        (title, categories, tags, like_count, content, created_at, created_by) 
-    VALUES (?, ?, ?, ?, ?, ?, ?);
+        (title, categories, tags, content, created_at, created_by) 
+    VALUES (?, ?, ?, ?, ?, ?);
 SQL;
 
-    $result = safe_query($sql, [ $title, $categories, $tags, 0, $content, time(), $user_id ], true);
+    $result = safe_query($sql, [ $title, $categories, $tags, $content, time(), $user_id ], true);
     if (is_bool($result)) return $result;
     return $result->fetch_assoc();
+}
+
+function get_has_user_liked_entry($user_id, $entry_id) {
+    $sql = "SELECT 1 FROM entry_likes WHERE entry_id = ? AND user_id = ?";
+    $result = safe_query($sql, [ $entry_id, $user_id ], true);
+    return $result->num_rows;
 }

@@ -88,15 +88,43 @@ function _entry_create($params) {
     redirect('/');
 }
 
+function _entry_like_toggle($params) {
+    $user = get_user();
+    if (!$user) {
+        var_dump($params);
+        throw new Error('User not found');
+    }
 
+    if (!array_key_exists('entry', $params)) {
+        var_dump($params);
+        throw new Error('Invalid parameters, "entry" expected');
+    }
+
+    return toggle_like_entry($user['id'], intval($params['entry']));
+}
+
+function _entry_did_user_like($params) {
+    $user = get_user();
+    if (!$user) {
+        var_dump($params);
+        throw new Error('User not found');
+    }
+
+    if (!array_key_exists('entry', $params)) {
+        var_dump($params);
+        throw new Error('Invalid parameters, "entry" expected');
+    }
+
+    return get_has_user_liked_entry($user['id'], intval($params['entry']));
+}
 
 
 
 register_handler('like_entry', '_entry_like', 'p');
 register_handler('dislike_entry', '_entry_dislike', 'p');
 register_handler('create_entry', '_entry_create', 'p');
-
-
+register_handler('toggle_like_entry', '_entry_like_toggle');
+register_handler('user_did_like', '_entry_did_user_like');
 
 
 handle_request();
