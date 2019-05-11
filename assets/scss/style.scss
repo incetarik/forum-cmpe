@@ -43,6 +43,11 @@ header{ padding: 1rem 0 0; position: relative; z-index: 5;
     nav{ padding: 1rem 0; text-align: center;
       a{ padding: 1rem; display: inline-block; background: transparent; transition: .4s; font-size: 1rem; color: #ecf0f1; line-height: 1rem; 
         &:hover,&.active{ background: #2980b9; }
+        &.right {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+        }
       }
     }
   }
@@ -159,8 +164,22 @@ section{ margin-bottom: 2rem;
       }
     }
   }
-  &.sidebar{ position: fixed; right: 1rem; top: 144px; width: $sidebar; box-sizing: border-box; padding-left: 1rem;
-    .head{ background: #e67e22; }
+  &.sidebar{
+    /*position: fixed; right: 1rem; */
+    // top: 144px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $sidebar; box-sizing: border-box; padding-left: 1rem;
+    .head{ background: #e67e22;
+      &.create-new {
+        background: rgb(157,69,255);
+        a {
+          color: white;
+          font-weight: lighter;
+        }
+      }
+    }
     article{ background: #95a5a6; margin-bottom: 0.5rem; }
   } 
 }
