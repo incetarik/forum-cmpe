@@ -124,6 +124,17 @@ section{ margin-bottom: 2rem;
       .article{ margin: 0 0 .5rem 75px; background: darken(#7f8c8d, 15%); 
         &:nth-child(1){ margin-top: .5rem; }
       }
+
+      &.reply {
+        a.send {
+          color: white;
+          margin: 1rem;
+          padding: 1rem;
+          float: right;
+          border: 1px solid #9d44ff;
+          background: #9d44ff;
+        }
+      }
     }
     .person{ width: 75px; min-height: 75px; 
       img{ display: block; max-width: 100%; margin-bottom: 1rem; }
