@@ -4,6 +4,7 @@ $entry_id = null;
 $entry = null;
 $categories = null;
 $tags = null;
+$userLiked = false;
 
 if (isset($_GET['eid'])) {
     $entry_id = $_GET['eid'];
@@ -15,6 +16,7 @@ if ($entry_id) {
   $categories = explode(';', $categories);
   $tags = $entry['tags'];
   $tags = explode(';', $tags);
+  $userLiked = get_has_user_liked_entry($user['id'], $entry['id']);
 }
 
 ?>
@@ -51,7 +53,9 @@ if ($entry_id) {
 
           <?php if ($user and ($user['id'] != $entry['created_by'])): ?>
           <div class="like">
-            <button class="active">Like</button>
+            <button id="like_button_<?= $entry['id'] ?>" class="active" onclick="Entry.toggleLike(<?= $entry['id'] ?>)">
+              <?= $userLiked ? 'Dislike' : 'Like' ?>
+            </button>
           </div>
           <?php endif; ?>
         </div>
@@ -66,4 +70,5 @@ if ($entry_id) {
   </div>
 </div>
 
+<script src="/assets/js/entry.js"></script>
 <?php include_once __DIR__ . '/layout/_layout_bottom.php'; ?>
