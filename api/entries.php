@@ -84,7 +84,8 @@ function _entry_create($params) {
     $tags = array_map(function ($item) { return trim($item); }, $tags);
     $tags = implode(';', $tags);
 
-    return create_entry($created_by, $title, $content, $categories, $tags);
+    $value = create_entry($created_by, $title, $content, $categories, $tags);
+    redirect('/');
 }
 
 
