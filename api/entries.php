@@ -158,12 +158,22 @@ function _entry_add_comment($params) {
     return add_comment_to_entry($user['id'], intval($params['entry']), $params['title'], $params['content']);
 }
 
+function _entry_search($params) {
+    if (!array_key_exists('text', $params)) {
+        var_dump($params);
+        throw new Error('Invalid parameters, "text" expected');
+    }
+
+    return search_in_entries($params['text']);
+}
+
 register_handler('like_entry', '_entry_like', 'p');
 register_handler('dislike_entry', '_entry_dislike', 'p');
 register_handler('create_entry', '_entry_create', 'p');
 register_handler('toggle_like_entry', '_entry_like_toggle', 'p');
 register_handler('user_did_like', '_entry_did_user_like', 'p');
 register_handler('get_entry_comments', '_entry_get_comments', 'p');
-register_handler('add_comment', '_entry_add_comment');
+register_handler('add_comment', '_entry_add_comment', 'p');
+register_handler('search', '_entry_search', 'p');
 
 handle_request();
