@@ -158,3 +158,20 @@ SQL;
     list($result, $stmt) = safe_query($sql, [ $content, time(), $entry_id, $user_id, $title ], true, true);
     return $stmt->affected_rows;
 }
+
+function search_in_entries($text) {
+    $sql = <<<SQL
+    SELECT entries.*, u.job_title, u.name, u.surname, u.email_address
+    FROM entries
+    LEFT JOIN users u on entries.created_by = u.id
+    WHERE 
+          title LIKE ? 
+       OR content LIKE ?
+       OR tags LIKE ?
+       OR categories LIKE ?
+SQL;
+
+    $result = safe_query($sql, [ "%$text%", "%$text%", "%$text%", "%$text%" ], true);
+    $values = $result->fetch_all(MYSQLI_BOTH);
+    return $values;
+}
