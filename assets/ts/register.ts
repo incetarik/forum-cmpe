@@ -170,7 +170,14 @@ namespace Register {
     }
 
     registerButton.onclick = function () {
-      if (cannotSend) {
+      if (
+        !idInput.classList.contains('success')
+        || !nameInput.classList.contains('success')
+        || !surnameInput.classList.contains('success')
+        || !mailInput.classList.contains('success')
+        || !passwordInput.classList.contains('success')
+        || !passwordAgainInput.classList.contains('success')
+      ) {
         errorHeader.innerText = 'Please check your inputs'
         return
       }
