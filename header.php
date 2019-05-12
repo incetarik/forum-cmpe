@@ -12,7 +12,7 @@ $user = get_user();
     <div class="search">
       <form action="search-result.php">
         <div class="form-group">
-          <input type="text" placeholder="Search">
+          <input type="text" placeholder="Search" id="searchInput">
           <button type="button">Now</button>
         </div>
       </form>
@@ -33,7 +33,6 @@ $user = get_user();
         <a href="index.php">Home</a>
         <a href="categories.php">Categories</a>
         <a href="content.php">Content</a>
-        <a href="message.php">Message</a>
         <?php if ($user): ?>
         <a class="right" href="create-article.php">Add New</a>
         <?php endif; ?>

@@ -4,6 +4,7 @@ $tag = null;
 $uid = null;
 $category = null;
 $entries = null;
+$key = null;
 
 if (isset($_GET['tag'])) {
   $tag = $_GET['tag'];
@@ -18,6 +19,11 @@ if (isset($_GET['uid'])) {
 if (isset($_GET['category'])) {
   $category = $_GET['category'];
   $entries = get_entries_by_category($category);
+}
+
+if (isset($_GET['key'])) {
+  $key = $_GET['key'];
+  $entries = search_in_entries($key);
 }
 
 ?>
@@ -37,6 +43,9 @@ if (isset($_GET['category'])) {
             }
             else if ($tag) {
               echo ' by tag: "' . $tag . '"';
+            }
+            else if ($key) {
+              echo ' by text: "' . $key . '"';
             }
             ?>
         </h1>

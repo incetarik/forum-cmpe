@@ -1,6 +1,7 @@
 namespace Header {
   export let navList: HTMLElement
   export let searchButton: HTMLButtonElement
+  export let searchInput: HTMLInputElement
 
   Global.extendOnLoad(() => {
     Global.slice(document.querySelectorAll('.user button')).forEach((item: HTMLButtonElement) => {
@@ -10,6 +11,7 @@ namespace Header {
     })
 
     navList = document.querySelector('nav')
+    searchInput = document.getElementById('searchInput') as HTMLInputElement
     const { currentLocation } = Global
 
     Global.slice(navList.querySelectorAll('a')).forEach((item: HTMLAnchorElement, index: number) => {
@@ -30,7 +32,9 @@ namespace Header {
 
   Global.extendOnLoad(() => {
     searchButton.onclick = () => {
-      location.href = '/search-result.php'
+      const value = searchInput.value
+      if (!value || !value.trim()) return
+      location.href = `/search-result.php?key=${encodeURI(value)}`
     }
   })
 }
